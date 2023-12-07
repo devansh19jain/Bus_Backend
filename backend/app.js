@@ -29,11 +29,9 @@ const ticketRoute = require("./routes/ticket")
 
 
 //DB Config
-const DB_URL = require('./config/keys').MongoURI;
-
 //connect to mongo
 //---------------------------------------------
-mongoose.connect(DB_URL, {
+mongoose.connect(process.env.MongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
