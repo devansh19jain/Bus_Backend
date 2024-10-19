@@ -9,19 +9,19 @@ const BusList = () => {
   const { userbuses, userbuses:{ fetchedBuses } } = useContext(UserContext);
   console.log(localStorage);
 
-  if (!fetchedBuses || fetchedBuses?.length === 0) {
-    console.log('No buses');
-    return (
-      <div className="imgg">
-        <div>
-          <Header />
-        </div>
-        <div className="center-box">
-          <p className="erro">No Buses Found</p>
-        </div>
-      </div>
-    );
-  }
+  // if (!fetchedBuses || fetchedBuses?.length === 0) {
+  //   console.log('No buses');
+  //   return (
+  //     <div className="imgg">
+  //       <div>
+  //         <Header />
+  //       </div>
+  //       <div className="center-box">
+  //         <p className="erro">No Buses Found</p>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div>

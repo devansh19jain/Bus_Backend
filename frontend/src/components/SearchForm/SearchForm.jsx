@@ -9,14 +9,19 @@ import { FaCalendarAlt } from 'react-icons/fa';
 import { format } from 'date-fns';
 import { UserContext } from '../UserContext';
 
+
+
 const SearchForm = () => {
+  const fetchedBuses = [{_id: 1, destination: 'LNMIIT', time: '6:00', availableSeats: 15},
+    {_id: 1, destination: 'LNMIIT', time: '6:00', availableSeats: 15}
+  ]
   const [destination, setDestination] = useState('');
-  let {userbuses:{ fetchedBuses }, setUserbuses } = useContext(UserContext);
+  let {userbuses:{}, setUserbuses } = useContext(UserContext);
   useContext(UserContext);
   const navigate = useNavigate();
   const [startDate, setStartDate] = useState("");
   const [finalDate, setFinalDate] = useState('');
-
+  
 console.log(finalDate);
   // const date = format(new Date(), 'yyyy-MM-dd', {
   //   timeZone: 'utc',
@@ -53,15 +58,15 @@ console.log(finalDate);
   const getBuses = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await axios.post('https://cyan-barnacle-slip.cyclic.app/search', {
-        destination,
-        date:finalDate,
-      });
+    // try {
+    //   const response = await axios.post('https://cyan-barnacle-slip.cyclic.app/search', {
+    //     destination,
+    //     date:finalDate,
+    //   });
 
-      const { status, fetchedBuses } = response.data;
+      // const { status, fetchedBuses } = response.data;
 
-      if (status) {
+      // if (status) {
           // Update the buses state using context
           sessionStorage.setItem("bus", {fetchedBuses});
           console.log(localStorage);
@@ -69,12 +74,12 @@ console.log(finalDate);
           setUserbuses({fetchedBuses});
           // Use the navigate function to redirect to the /buslist route
           navigate('/buslist');
-      } else {
-        console.error('Error while fetching buses:', response.data.message);
-      }
-    } catch (error) {
-      console.error('Error:', error.message);
-    }
+      // } else {
+      //   console.error('Error while fetching buses:', response.data.message);
+      // }
+    // } catch (error) {
+    //   console.error('Error:', error.message);
+    // }
   };
 
   return (

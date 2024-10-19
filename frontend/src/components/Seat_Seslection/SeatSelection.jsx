@@ -42,26 +42,26 @@ const SeatSelection = () => {
       //   }
       // );
         // console.log(token);
-        const bookingResponse = await axios.post(
-          'https://cyan-barnacle-slip.cyclic.app/booking',
-          {
-            busId: selectedBus._id,
-            seatNo: selectedSeat,
-            userId: user._id,
-            username: user.name,
-            date: selectedBus.date,
-            time: selectedBus.time,
-            busNo: selectedBus.busID
-           // userID: token.user,
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        );
-        console.log('Booking Response:', bookingResponse.data);
-        console.log(localStorage);
+        // const bookingResponse = await axios.post(
+        //   'https://cyan-barnacle-slip.cyclic.app/booking',
+        //   {
+        //     busId: selectedBus._id,
+        //     seatNo: selectedSeat,
+        //     userId: user._id,
+        //     username: user.name,
+        //     date: selectedBus.date,
+        //     time: selectedBus.time,
+        //     busNo: selectedBus.busID
+        //    // userID: token.user,
+        //   },
+        //   {
+        //     headers: {
+        //       'Content-Type': 'application/json',
+        //     },
+        //   }
+        // );
+        // console.log('Booking Response:', bookingResponse.data);
+        // console.log(localStorage);
         navigate('/ticket');
     } catch (error) {
       console.error('Error making payment:', error.message);
@@ -101,17 +101,17 @@ const SeatSelection = () => {
         <div className="plane">
           {selectedSeat && (
             <div className="pay-now-popup">
-              {token ? (
+              {/* {token ? ( */}
                 
-                  <a onClick ={async()=>{
+                  <button onClick ={async()=>{
                     await handleToken()
-                  }}href="https://buy.stripe.com/test_00g2ad1j9bxV5NufYY" className="pay-now">Pay Now</a>
+                  }} className="pay-now">Pay Now</button>
                
-              ) : (
+              {/* ) : (
                 <Link to="/Login" className="harshit">
                   <i className="ri-login-box-line"></i> Login
                 </Link>
-              )}
+              )} */}
               <div className="para">
                 <p>Seat: {selectedSeat}</p>
               </div>

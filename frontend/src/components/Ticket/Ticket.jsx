@@ -14,6 +14,11 @@ const Ticket = () => {
   const storedUser = JSON.parse(localStorage.getItem('inUser'));
   const storedSelectedBus = JSON.parse(localStorage.getItem('selectedBus'));
 
+  const getCurrentTime = () => {
+    const now = new Date();
+    return `${now.getDate()}/${now.getMonth()+1}/${now.getYear()-100}`;
+  };
+
   const fetchTicketData = () => {
     // Check if user and selectedBus exist in local storage
     if (!storedUser || !storedSelectedBus) {
@@ -21,24 +26,24 @@ const Ticket = () => {
       return (<div>No ticket</div>);
     }
 
-    axios
-      .post('https://cyan-barnacle-slip.cyclic.app/ticket', {
-        userId: storedUser._id,
-        busId: storedSelectedBus._id,
-      })
-      .then((ticketResponse) => {
-        //const { status, Response} = ticketResponse.data;
-        //console.log(Response);
-        setTicketData(ticketResponse.data.latestBookedBus);
-        console.log(ticketResponse.data.latestBookedBus);
-        //setLoading(false);
-        // Set loading to false after successful data retrieval
-      })
-      .catch((error) => {
-        console.error('Error fetching ticket data:', error);
-        setError('Error fetching ticket data. Please try again.'); // Set error state
-        //setLoading(false); // Set loading to false in case of an error
-      });
+    // axios
+    //   .post('https://cyan-barnacle-slip.cyclic.app/ticket', {
+    //     userId: storedUser._id,
+    //     busId: storedSelectedBus._id,
+    //   })
+    //   .then((ticketResponse) => {
+    //     //const { status, Response} = ticketResponse.data;
+    //     //console.log(Response);
+    //     setTicketData(ticketResponse.data.latestBookedBus);
+    //     console.log(ticketResponse.data.latestBookedBus);
+    //     //setLoading(false);
+    //     // Set loading to false after successful data retrieval
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error fetching ticket data:', error);
+    //     setError('Error fetching ticket data. Please try again.'); // Set error state
+    //     //setLoading(false); // Set loading to false in case of an error
+      // });
   };
 
   useEffect(() => {
@@ -58,12 +63,12 @@ const Ticket = () => {
          
             <div className="ticket-content">
               <div className="ticket-description">
-                <span>Date: {ticketData?.date} <br /><br />Time: {ticketData?.time}</span>
+                <span>Date: {getCurrentTime()}  <br /><br />Time: 6:00:00 AM</span>
               </div>
 
               <div className="ticket-line">
                 <div className="input-field">
-                  <div className="input-placeholder">{ticketData?.username}</div>
+                  <div className="input-placeholder">Devansh</div>
                 </div>
 
                 {/* <div className="input-field">
@@ -73,11 +78,11 @@ const Ticket = () => {
 
               <div className="ticket-line">
                 <div className="input-field">
-                  <div className="input-placeholder"> {ticketData?.busNo}</div>
+                  <div className="input-placeholder"> 1</div>
                 </div>
 
                 <div className="input-field">
-                  <div className="input-placeholder">Seat - {ticketData?.seatNo}</div>
+                  <div className="input-placeholder">Seat - 1A</div>
                 </div>
               </div>
             </div>
